@@ -14,11 +14,13 @@ function divsToBool(tuple) {
   })
 }
 
-function newRow(cellsInRow, rule, firstRow) {
+function newRow(rule, firstRow) {
   let row = document.createElement('div')
   row.classList.add('row')
 
-  parentRow = document.querySelector('#automaton').lastChild.children
+  if (!firstRow) {
+    parentRow = document.querySelector('#automaton').lastChild.children
+  }
 
   let targetClass = ''
 
@@ -65,6 +67,15 @@ function newRow(cellsInRow, rule, firstRow) {
   document.querySelector('#automaton').appendChild(row)
 }
 
+function reset() {
+  var automaton = document.getElementById('automaton')
+  while (automaton.firstChild) {
+    automaton.removeChild(automaton.firstChild)
+  }
+
+  newRow({}, true)
+}
+
 function createRuleMap(ruleList) {
   let map = new Map()
   for (let i = 0; i < ruleList.length; i++) {
@@ -75,11 +86,11 @@ function createRuleMap(ruleList) {
 }
 
 // initialize first row
-newRow(cellsInRow, {}, true)
+reset()
 
+let allRules = new Map()
 // random rule
-/*
-rule = [
+allRules.set('random', [
   [[1,1,1], -1],
   [[1,1,0], -1],
   [[1,0,1], -1],
@@ -87,12 +98,10 @@ rule = [
   [[0,1,1], -1],
   [[0,1,0], -1],
   [[0,0,1], -1],
-  [[0,0,0], -1]]
-*/
+  [[0,0,0], -1]])
 
 // slide right
-/*
-rule = [
+allRules.set('slideRight', [
   [[1,1,1], 1],
   [[1,1,0], 1],
   [[1,0,1], 1],
@@ -100,12 +109,10 @@ rule = [
   [[0,1,1], 0],
   [[0,1,0], 0],
   [[0,0,1], 0],
-  [[0,0,0], 0]]
-*/
+  [[0,0,0], 0]])
 
 // rule 110
-/*
-rule = [
+allRules.set('rule110', [
   [[1,1,1], 0],
   [[1,1,0], 1],
   [[1,0,1], 1],
@@ -113,11 +120,10 @@ rule = [
   [[0,1,1], 1],
   [[0,1,0], 1],
   [[0,0,1], 1],
-  [[0,0,0], 0]]
- */
+  [[0,0,0], 0]])
 
 // rule 110 + some randomness
-rule = [
+allRules.set('rule110Random', [
   [[1,1,1], -1],
   [[1,1,0], 1],
   [[1,0,1], 1],
@@ -125,8 +131,17 @@ rule = [
   [[0,1,1], 1],
   [[0,1,0], 1],
   [[0,0,1], -1],
-  [[0,0,0], 0]]
+  [[0,0,0], 0]])
 
-ruleMap = createRuleMap(rule)
+ruleMap = createRuleMap(allRules.get('random'))
+// listen for updates to the selector
+document.querySelector('#rule-selector').onchange = function(){
+  let ruleName = this.options[this.selectedIndex].value
+  ruleMap = createRuleMap(allRules.get(ruleName))
 
-setInterval(function(){newRow(cellsInRow, ruleMap, false)}, waittime)
+  if (document.getElementById('reset-on-change').checked) {
+    reset()
+  }
+}
+
+setInterval(function(){newRow(ruleMap, false)}, waittime)
