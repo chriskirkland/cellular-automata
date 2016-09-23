@@ -1,0 +1,15 @@
+.row div {
+  height: 8px;
+  width: 8px;
+  margin:1px;
+  display: inline-block;
+}
+.row div.active {
+  background-color: red;
+}
+.row div.inactive {
+  background-color: #99CCFF; /* shout out to MPJ */
+}
+body {
+  margin: 0
+}
