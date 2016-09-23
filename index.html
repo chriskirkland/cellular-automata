@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <style>
+      .row div {
+        height: 8px;
+        width: 8px;
+        margin:1px;
+        display: inline-block;
+      }
+      .row div.active {
+        background-color: red;
+      }
+      .row div.inactive {
+        background-color: #99CCFF; /* shout out to MPJ */
+      }
+      body {
+        margin: 0
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="automaton">
+    </div>
+
+    <script>
+      // automatic sizing
+      let cellsInRow = window.innerWidth/10
+      let maxRows = window.innerHeight/10 - 1
+
+      let waittime = 100 // milliseconds
+
+      function randomBool() {
+        return Math.random() > 0.5
+      }
+
+      function newRow(cellsInRow, randomize) {
+        let row = document.createElement('div')
+        row.classList.add('row')
+
+        for (let i = 0; i < cellsInRow; i++) {
+          let div = document.createElement('div')
+          if (randomize) {
+            div.classList.add(randomBool() ? 'active' : 'inactive')
+          }
+          row.appendChild(div)
+        }
+
+        // delete a row if necessary
+        allRows = document.querySelectorAll('.row')
+        if (allRows.length >= maxRows) {
+          let firstRow = allRows[0]
+          firstRow.parentElement.removeChild(firstRow)
+        }
+
+        document.querySelector('#automaton').appendChild(row)
+      }
+
+      // initialize first row
+      newRow(cellsInRow, true)
+
+      setInterval(function(){newRow(cellsInRow, true)}, waittime)
+    </script>
+  </body>
+</html>
