@@ -14,6 +14,29 @@ function divsToBool(tuple) {
   })
 }
 
+function setState(node, stateNum, inAutomata) {
+  // remove all existing classes
+  node.classList.remove('active')
+  node.classList.remove('inactive')
+  node.classList.remove('random')
+
+  switch(stateNum) {
+    case 1:
+      targetClass = 'active'
+      break;
+    case 0:
+      targetClass = 'inactive'
+      break;
+    case -1:
+      if (inAutomata) {
+        targetClass = randomBool() ? 'active' : 'inactive'
+      } else {
+	targetClass = 'random'
+      }
+  }
+  node.classList.add(targetClass)
+}
+
 function newRow(rule, firstRow) {
   let row = document.createElement('div')
   row.classList.add('row')
@@ -42,17 +65,18 @@ function newRow(rule, firstRow) {
         parentRow[i],
         parentRow[(i+1) % cellsInRow]]).toString()
 
-      switch(rule.get(parentTuple)) {
-        case 1:
-          targetClass = 'active'
-          break;
-        case 0:
-          targetClass = 'inactive'
-          break;
-        case -1:
-          targetClass = randomBool() ? 'active' : 'inactive'
-      }
-      div.classList.add(targetClass)
+      setState(div, rule.get(parentTuple), true)
+      // switch(rule.get(parentTuple)) {
+      //   case 1:
+      //     targetClass = 'active'
+      //     break;
+      //   case 0:
+      //     targetClass = 'inactive'
+      //     break;
+      //   case -1:
+      //     targetClass = randomBool() ? 'active' : 'inactive'
+      // }
+      // div.classList.add(targetClass)
     }
     row.appendChild(div)
   }
@@ -83,7 +107,16 @@ function reset() {
 function createRuleMap(ruleList) {
   let map = new Map()
   for (let i = 0; i < ruleList.length; i++) {
+    // create the map
     map.set(ruleList[i][0].toString(), ruleList[i][1])
+
+    // adjust visualizer colors based on map
+    let strrep = ruleList[i][0].join('')
+    let selector = `#rule-box-${strrep} tr .toggle`
+    console.log(strrep, '=>', selector)
+    node = document.querySelector(selector)
+
+    setState(node, ruleList[i][1], false)
   }
 
   return map

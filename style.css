@@ -15,6 +15,61 @@
   float: left;
 }
 
+
+#rule-visualizer table tr td div {
+  font-size: 90%;
+  line-height: 50%;
+}
+
+#rule-visualizer table tr .invisible div {
+  background-color: #FFFFFF;
+  visibility: visible;
+}
+
+#rule-visualizer table tr .active div {
+  background-color: #FFFFFF;
+  visibility: hidden;
+}
+
+#rule-visualizer table tr .inactive div {
+  background-color: #FFFFFF;
+  visibility: hidden;
+}
+
+#rule-visualizer table tr .invisible {
+  background-color: #FFFFFF;
+}
+
+#rule-visualizer table tr .random {
+  background-color: #FFFFFF;
+  visibility: visible;
+}
+
+#rule-visualizer table tr td {
+  height: 8px;
+  width: 8px;
+  margin: 1px;
+}
+
+#rule-visualizer table tr {
+  height: 10px;
+  width: auto;
+  margin: 1px;
+}
+
+#rule-visualizer table {
+  display: inline-block;
+  height: auto;
+  width: auto;
+  margin: 1px;
+}
+
+#rule-visualizer {
+  text-align: center;
+  height: auto;
+  width: auto;
+}
+
 body {
   margin: 0;
   display: inline;
