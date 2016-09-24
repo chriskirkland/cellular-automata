@@ -11,6 +11,10 @@
   margin-top: 3px;
 }
 
+#menu-bar a {
+  float: left;
+}
+
 body {
   margin: 0;
   display: inline;
