@@ -1,6 +1,6 @@
 // automatic sizing
 let cellsInRow = window.innerWidth/10
-let maxRows = window.innerHeight/10 - 1
+let maxRows = (window.innerHeight - 29)/10 - 1
 
 let waittime = 100 // milliseconds
 
@@ -73,6 +73,10 @@ function reset() {
     automaton.removeChild(automaton.firstChild)
   }
 
+  // setup colors
+  setColor()
+
+  // populate first row
   newRow({}, true)
 }
 
@@ -83,6 +87,27 @@ function createRuleMap(ruleList) {
   }
 
   return map
+}
+
+function setColor() {
+  // delete existing styles
+  allStyle = document.querySelectorAll('html > head > style')
+  allStyle.forEach(function(node) {
+    if (node.tagName == 'STYLE') {
+      node.parentNode.removeChild(node)
+    }
+  })
+
+  // add new styles
+  var classes = ['active', 'inactive']
+  classes.forEach(function(entry) {
+    let color = document.getElementById(`${entry}-color-picker`).value
+
+    css = `.${entry} { background-color: ${color}; }`
+    style = document.createElement('style')
+    style.appendChild(document.createTextNode(css))
+    document.head.appendChild(style)
+  })
 }
 
 // initialize first row
@@ -143,5 +168,15 @@ document.querySelector('#rule-selector').onchange = function(){
     reset()
   }
 }
+
+// document.getElementById('active-color-picker').onchange = function(){
+//   $('html > head').append(`<style>.active { background-color: ${this.value}; }</style>`)
+// }
+// document.getElementById('inactive-color-picker').onchange = function(){
+//   $('html > head').append(`<style>.inactive { background-color: ${this.value}; }</style>`)
+// }
+
+document.getElementById('active-color-picker').onchange = setColor
+document.getElementById('inactive-color-picker').onchange = setColor
 
 setInterval(function(){newRow(ruleMap, false)}, waittime)

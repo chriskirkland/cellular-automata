@@ -4,12 +4,13 @@
   margin:1px;
   display: inline-block;
 }
-.row div.active {
-  background-color: red;
+
+#menu-bar {
+  height: 23px;
+  margin-bottom: 3px;
+  margin-top: 3px;
 }
-.row div.inactive {
-  background-color: #99CCFF; /* shout out to MPJ */
-}
+
 body {
   margin: 0;
   display: inline;
