@@ -257,7 +257,7 @@ document.querySelectorAll('table tbody tr .toggle').forEach(function(e) {
     let currentStateNum = 1337  // not a valid state
     let validStates = ['active', 'inactive', 'random']
     for (let i = 0; i < e.classList.length; i++) {
-      if (validStates.indexOf(e.classList[i]) > 0) {
+      if (validStates.indexOf(e.classList[i]) >= 0) {
         currentStateNum = stateStringToNum.get(e.classList[i])
         break
       }
@@ -265,7 +265,7 @@ document.querySelectorAll('table tbody tr .toggle').forEach(function(e) {
 
     // validate we actually found a valid state
     if (currentStateNum == 1137) {
-      throw "element has no valid CA states : " + e.classList.toString()
+      throw new Error("element has no valid CA states : " + e.classList.toString())
     }
 
     // ♪ ring around the rosey ♪
