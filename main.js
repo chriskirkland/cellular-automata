@@ -3,8 +3,10 @@ function randomBool() {
 }
 
 function getWindowParams() {
+  menuHeight = document.getElementById('menu-bar').offsetHeight +
+              document.getElementById('rule-visualizer').offsetHeight
   cellsInRow = Math.floor(window.innerWidth/10)
-  maxRows = Math.floor((window.innerHeight - 29)/10)
+  maxRows = Math.floor((window.innerHeight - menuHeight)/10)
 }
 
 function divsToBool(tuple) {

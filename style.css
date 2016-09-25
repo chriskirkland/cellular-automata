@@ -1,22 +1,32 @@
-.row div {
-  height: 8px;
-  width: 8px;
-  margin:1px;
-  display: inline-block;
+#menu-bar-right .display-stack div {
+  position: static;
+  top: 0;
+  left: 0;
 }
 
-.row {
-  text-align: center;
+#menu-bar-right .display-stack {
+  float: left;
+  /* position: relative; */
+  vertical-align: top;
+  margin-right: 10px;
+  margin-left: 20px;
 }
 
-#menu-bar {
-  height: 23px;
-  margin-bottom: 3px;
-  margin-top: 3px;
+#menu-bar-right {
+  position: absolute;
+  right: 0;
 }
 
 #menu-bar a {
   float: left;
+}
+
+#menu-bar {
+  display: inline-block;
+  height: auto;
+  margin-bottom: 28px;  /* hacky; otherwise the rule-visualizer + CA window overlap :-( */
+  margin-top: 3px;
+  overflow: auto;
 }
 
 
@@ -68,9 +78,21 @@
 }
 
 #rule-visualizer {
+  margin-top:5px;
   text-align: center;
   height: auto;
   width: auto;
+}
+
+.row div {
+  height: 8px;
+  width: 8px;
+  margin:1px;
+  display: inline-block;
+}
+
+.row {
+  text-align: center;
 }
 
 body {

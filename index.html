@@ -9,26 +9,42 @@
         <img src="imgs/mark-github.png" alt="source" width=23 height=23 border=0>
       </a>
 
-      active:
-      <input type="color" id="active-color-picker" value="#FF0000" />
-      inactive:
-      <input type="color" id="inactive-color-picker" value="#99CCFF" />
-      &nbsp; &nbsp; &nbsp;
+      <div id='menu-bar-right'>
+        <div class='display-stack'>
+          <div>
+            active:
+            <input type="color" id="active-color-picker" value="#FF0000" />
+          </div>
 
-      reset on change:
-      <input type="checkbox" id="reset-on-change" />
-      &nbsp;
+          <div>
+          inactive:
+          <input type="color" id="inactive-color-picker" value="#99CCFF" />
+          </div>
+        </div>
 
-      <button type="button" id="visualize-button">visualize</button>
-      &nbsp;
+        <div class='display-stack'>
+          <div>
+            <button type="button" id="visualize-button">visualize</button>
+          </div>
+        </div>
 
-      select a rule:
-      <select id="rule-selector">
-        <option value="random">random</option>
-        <option value="slideRight">slide right</option>
-        <option value="rule110">rule 110</option>
-        <option value="rule110Random">rule 110 with randomness</option>
-      </select>
+        <div class='display-stack'>
+          <div>
+            reset on change:
+            <input type="checkbox" id="reset-on-change" />
+          </div>
+
+          <div>
+          select a rule:
+          <select id="rule-selector">
+            <option value="random">random</option>
+            <option value="slideRight">slide right</option>
+            <option value="rule110">rule 110</option>
+            <option value="rule110Random">rule 110 with randomness</option>
+          </select>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="rule-visualizer">
