@@ -22,19 +22,9 @@ function setState(node, stateNum, inAutomata) {
   node.classList.remove('inactive')
   node.classList.remove('random')
 
-  switch(stateNum) {
-    case 1:
-      targetClass = 'active'
-      break;
-    case 0:
-      targetClass = 'inactive'
-      break;
-    case -1:
-      if (inAutomata) {
-        targetClass = randomBool() ? 'active' : 'inactive'
-      } else {
-	targetClass = 'random'
-      }
+  targetClass = stateNumToString.get(stateNum)
+  if (targetClass == 'random' && inAutomata) {
+    targetClass = randomBool() ? 'active' : 'inactive'
   }
   node.classList.add(targetClass)
 }
@@ -68,17 +58,6 @@ function newRow(rule, firstRow) {
         parentRow[(i+1) % cellsInRow]]).toString()
 
       setState(div, rule.get(parentTuple), true)
-      // switch(rule.get(parentTuple)) {
-      //   case 1:
-      //     targetClass = 'active'
-      //     break;
-      //   case 0:
-      //     targetClass = 'inactive'
-      //     break;
-      //   case -1:
-      //     targetClass = randomBool() ? 'active' : 'inactive'
-      // }
-      // div.classList.add(targetClass)
     }
     row.appendChild(div)
   }
