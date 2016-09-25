@@ -5,6 +5,10 @@
   display: inline-block;
 }
 
+.row {
+  text-align: center;
+}
+
 #menu-bar {
   height: 23px;
   margin-bottom: 3px;

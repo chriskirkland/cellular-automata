@@ -1,11 +1,10 @@
-// automatic sizing
-let cellsInRow = window.innerWidth/10
-let maxRows = (window.innerHeight - 29)/10 - 1
-
-let waittime = 100 // milliseconds
-
 function randomBool() {
   return Math.random() > 0.5
+}
+
+function getWindowParams() {
+  cellsInRow = Math.floor(window.innerWidth/10)
+  maxRows = Math.floor((window.innerHeight - 29)/10)
 }
 
 function divsToBool(tuple) {
@@ -61,7 +60,7 @@ function newRow(rule, firstRow) {
        */
       // apply rule set
       parentTuple = divsToBool([
-        parentRow[(i-1 +cellsInRow) % cellsInRow],
+        parentRow[(i-1 + cellsInRow) % cellsInRow],
         parentRow[i],
         parentRow[(i+1) % cellsInRow]]).toString()
 
@@ -113,7 +112,6 @@ function createRuleMap(ruleList) {
     // adjust visualizer colors based on map
     let strrep = ruleList[i][0].join('')
     let selector = `#rule-box-${strrep} tr .toggle`
-    console.log(strrep, '=>', selector)
     node = document.querySelector(selector)
 
     setState(node, ruleList[i][1], false)
@@ -143,11 +141,20 @@ function setColor() {
   })
 }
 
+/*
+ * Main
+ */
+
+let waittime = 100 // milliseconds
+
+// setup # of rows and row sizes
+getWindowParams()
+
 // initialize first row
 reset()
 
+// Default CA Rules
 let allRules = new Map()
-// random rule
 allRules.set('random', [
   [[1,1,1], -1],
   [[1,1,0], -1],
@@ -158,7 +165,6 @@ allRules.set('random', [
   [[0,0,1], -1],
   [[0,0,0], -1]])
 
-// slide right
 allRules.set('slideRight', [
   [[1,1,1], 1],
   [[1,1,0], 1],
@@ -169,7 +175,6 @@ allRules.set('slideRight', [
   [[0,0,1], 0],
   [[0,0,0], 0]])
 
-// rule 110
 allRules.set('rule110', [
   [[1,1,1], 0],
   [[1,1,0], 1],
@@ -180,7 +185,6 @@ allRules.set('rule110', [
   [[0,0,1], 1],
   [[0,0,0], 0]])
 
-// rule 110 + some randomness
 allRules.set('rule110Random', [
   [[1,1,1], -1],
   [[1,1,0], 1],
@@ -192,7 +196,16 @@ allRules.set('rule110Random', [
   [[0,0,0], 0]])
 
 ruleMap = createRuleMap(allRules.get('random'))
-// listen for updates to the selector
+
+// main event loop
+setInterval(function(){newRow(ruleMap, false)}, waittime)
+
+
+/*
+ * Event-based logic
+ */
+
+// changes to rule selector
 document.querySelector('#rule-selector').onchange = function(){
   let ruleName = this.options[this.selectedIndex].value
   ruleMap = createRuleMap(allRules.get(ruleName))
@@ -202,14 +215,12 @@ document.querySelector('#rule-selector').onchange = function(){
   }
 }
 
-// document.getElementById('active-color-picker').onchange = function(){
-//   $('html > head').append(`<style>.active { background-color: ${this.value}; }</style>`)
-// }
-// document.getElementById('inactive-color-picker').onchange = function(){
-//   $('html > head').append(`<style>.inactive { background-color: ${this.value}; }</style>`)
-// }
-
+// changes to color picker
 document.getElementById('active-color-picker').onchange = setColor
 document.getElementById('inactive-color-picker').onchange = setColor
 
-setInterval(function(){newRow(ruleMap, false)}, waittime)
+// start over if the window is resized
+window.onresize = function() {
+  getWindowParams()
+  reset()
+}
