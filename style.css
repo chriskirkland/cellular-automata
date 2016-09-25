@@ -6,7 +6,6 @@
 
 #menu-bar-right .display-stack {
   float: left;
-  /* position: relative; */
   vertical-align: top;
   margin-right: 10px;
   margin-left: 20px;
@@ -93,6 +92,12 @@
 
 .row {
   text-align: center;
+}
+
+#footer {
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
 }
 
 body {

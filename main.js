@@ -4,7 +4,8 @@ function randomBool() {
 
 function getWindowParams() {
   menuHeight = document.getElementById('menu-bar').offsetHeight +
-              document.getElementById('rule-visualizer').offsetHeight
+               document.getElementById('rule-visualizer').offsetHeight +
+               document.getElementById('footer').offsetHeight
   cellsInRow = Math.floor(window.innerWidth/10)
   maxRows = Math.floor((window.innerHeight - menuHeight)/10)
 }
