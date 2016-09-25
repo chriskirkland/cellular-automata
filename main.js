@@ -141,6 +141,15 @@ function setColor() {
   })
 }
 
+function toggleRuleVisualization(){
+  rulevis = document.getElementById('rule-visualizer')
+  if (rulevis.style.display == 'none') {
+    rulevis.style.display = ''
+  } else {
+    rulevis.style.display = 'none'
+  }
+}
+
 /*
  * Main
  */
@@ -152,6 +161,9 @@ getWindowParams()
 
 // initialize first row
 reset()
+
+// hide rule visualization bar
+toggleRuleVisualization()
 
 // Default CA Rules
 let allRules = new Map()
@@ -218,6 +230,9 @@ document.querySelector('#rule-selector').onchange = function(){
 // changes to color picker
 document.getElementById('active-color-picker').onchange = setColor
 document.getElementById('inactive-color-picker').onchange = setColor
+
+// visualize button click
+document.getElementById('visualize-button').onclick = toggleRuleVisualization
 
 // start over if the window is resized
 window.onresize = function() {
