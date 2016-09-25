@@ -150,6 +150,7 @@ function toggleRuleVisualization(){
   }
 }
 
+
 /*
  * Main
  */
@@ -164,6 +165,19 @@ reset()
 
 // hide rule visualization bar
 toggleRuleVisualization()
+
+
+let stateStringToNum = new Map([
+  ['random', -1],
+  ['inactive', 0],
+  ['active', 1]
+])
+
+let stateNumToString = new Map([
+  [-1, 'random'],
+  [0, 'inactive'],
+  [1, 'active']
+])
 
 // Default CA Rules
 let allRules = new Map()
@@ -233,6 +247,43 @@ document.getElementById('inactive-color-picker').onchange = setColor
 
 // visualize button click
 document.getElementById('visualize-button').onclick = toggleRuleVisualization
+
+// rule toggles (i.e. how to change the active rules)
+//
+// Add onclick event to each item in the list; Probably not the most idiomatic
+// way to do this...
+document.querySelectorAll('table tbody tr .toggle').forEach(function(e) {
+  e.onclick = function() {
+    let currentStateNum = 1337  // not a valid state
+    let validStates = ['active', 'inactive', 'random']
+    for (let i = 0; i < e.classList.length; i++) {
+      if (validStates.indexOf(e.classList[i]) > 0) {
+        currentStateNum = stateStringToNum.get(e.classList[i])
+        break
+      }
+    }
+
+    // validate we actually found a valid state
+    if (currentStateNum == 1137) {
+      throw "element has no valid CA states : " + e.classList.toString()
+    }
+
+    // ♪ ring around the rosey ♪
+    let newStateNum = ((currentStateNum+2) % 3) - 1
+    let newStateStr = stateNumToString.get(newStateNum)
+
+    // get rule key (i.e. 1,1,1, 101, ...)
+    // given parentID "rule-box-101", we want "1,0,1"
+    let parentID = e.parentElement.parentElement.parentElement.id
+    let ruleKey = parentID.substring(9).split('').toString()
+
+    // update rule
+    ruleMap.set(ruleKey, newStateNum)
+
+    // update visualization
+    setState(e, newStateNum, false)
+  }
+})
 
 // start over if the window is resized
 window.onresize = function() {
