@@ -177,8 +177,12 @@ let stateNumToString = new Map([
 let allRules = new Map()
 allRules.set('random', [-1, -1, -1, -1, -1, -1, -1, -1])
 allRules.set('slideRight', [1, 1, 1, 1, 0, 0, 0, 0])
+allRules.set('rule30', [0, 0, 0, 1, 1, 1, 1, 0])
 allRules.set('rule110', [0, 1, 1, 0, 1, 1, 1, 0])
 allRules.set('rule110Random', [-1, 1, 1, 0, 1, 1, -1, 0])
+allRules.set('rule126', [0, 1, 1, 1, 1, 1, 1, 0])
+allRules.set('rule150', [1, 0, 0, 1, 0, 1, 1, 0])
+allRules.set('rule182', [1, 0, 1, 1, 0, 1, 1, 0])
 
 ruleMap = createRuleMap(allRules.get('random'))
 
