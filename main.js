@@ -2,6 +2,17 @@ function randomBool() {
   return Math.random() > 0.5
 }
 
+function dec2bin(dec, minDigits) {
+  // convert decimal integer to binary
+  let bin = dec.toString(2)
+
+  // pad with zeroes to achieve minDigits
+  let pad = Math.max(minDigits - bin.length + 1, 1)
+  let zeroes =  Array(pad).join('0')
+
+  return zeroes + bin
+}
+
 function getWindowParams() {
   menuHeight = document.getElementById('menu-bar').offsetHeight +
                document.getElementById('rule-visualizer').offsetHeight +
@@ -13,7 +24,7 @@ function getWindowParams() {
 function divsToBool(tuple) {
   return tuple.map(function(e){
     return e.classList.contains('active') ? 1 : 0
-  })
+  }).join('')
 }
 
 function setState(node, stateNum, inAutomata) {
@@ -55,7 +66,7 @@ function newRow(rule, firstRow) {
       parentTuple = divsToBool([
         parentRow[(i-1 + cellsInRow) % cellsInRow],
         parentRow[i],
-        parentRow[(i+1) % cellsInRow]]).toString()
+        parentRow[(i+1) % cellsInRow]])
 
       setState(div, rule.get(parentTuple), true)
     }
@@ -89,14 +100,15 @@ function createRuleMap(ruleList) {
   let map = new Map()
   for (let i = 0; i < ruleList.length; i++) {
     // create the map
-    map.set(ruleList[i][0].toString(), ruleList[i][1])
+    let binrep = dec2bin(7-i, 3)
+    map.set(binrep, ruleList[i])
 
     // adjust visualizer colors based on map
-    let strrep = ruleList[i][0].join('')
+    let strrep = binrep
     let selector = `#rule-box-${strrep} tr .toggle`
     node = document.querySelector(selector)
 
-    setState(node, ruleList[i][1], false)
+    setState(node, ruleList[i], false)
   }
 
   return map
@@ -163,45 +175,10 @@ let stateNumToString = new Map([
 
 // Default CA Rules
 let allRules = new Map()
-allRules.set('random', [
-  [[1,1,1], -1],
-  [[1,1,0], -1],
-  [[1,0,1], -1],
-  [[1,0,0], -1],
-  [[0,1,1], -1],
-  [[0,1,0], -1],
-  [[0,0,1], -1],
-  [[0,0,0], -1]])
-
-allRules.set('slideRight', [
-  [[1,1,1], 1],
-  [[1,1,0], 1],
-  [[1,0,1], 1],
-  [[1,0,0], 1],
-  [[0,1,1], 0],
-  [[0,1,0], 0],
-  [[0,0,1], 0],
-  [[0,0,0], 0]])
-
-allRules.set('rule110', [
-  [[1,1,1], 0],
-  [[1,1,0], 1],
-  [[1,0,1], 1],
-  [[1,0,0], 0],
-  [[0,1,1], 1],
-  [[0,1,0], 1],
-  [[0,0,1], 1],
-  [[0,0,0], 0]])
-
-allRules.set('rule110Random', [
-  [[1,1,1], -1],
-  [[1,1,0], 1],
-  [[1,0,1], 1],
-  [[1,0,0], 0],
-  [[0,1,1], 1],
-  [[0,1,0], 1],
-  [[0,0,1], -1],
-  [[0,0,0], 0]])
+allRules.set('random', [-1, -1, -1, -1, -1, -1, -1, -1])
+allRules.set('slideRight', [1, 1, 1, 1, 0, 0, 0, 0])
+allRules.set('rule110', [0, 1, 1, 0, 1, 1, 1, 0])
+allRules.set('rule110Random', [-1, 1, 1, 0, 1, 1, -1, 0])
 
 ruleMap = createRuleMap(allRules.get('random'))
 
@@ -254,10 +231,10 @@ document.querySelectorAll('table tbody tr .toggle').forEach(function(e) {
     let newStateNum = ((currentStateNum+2) % 3) - 1
     let newStateStr = stateNumToString.get(newStateNum)
 
-    // get rule key (i.e. 1,1,1, 101, ...)
-    // given parentID "rule-box-101", we want "1,0,1"
+    // get rule key (i.e. 111, 101, ...)
+    // given parentID "rule-box-101", we want "101"
     let parentID = e.parentElement.parentElement.parentElement.id
-    let ruleKey = parentID.substring(9).split('').toString()
+    let ruleKey = parentID.substring(9)
 
     // update rule
     ruleMap.set(ruleKey, newStateNum)
