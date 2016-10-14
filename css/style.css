@@ -1,107 +1,88 @@
-#menu-bar-right .display-stack div {
-  position: static;
-  top: 0;
-  left: 0;
+#menu-bar-right {
+  position: absolute;
+  right: 0;
 }
-
 #menu-bar-right .display-stack {
   float: left;
   vertical-align: top;
   margin-right: 10px;
   margin-left: 20px;
 }
-
-#menu-bar-right {
-  position: absolute;
-  right: 0;
-}
-
-#menu-bar a {
-  float: left;
+#menu-bar-right .display-stack div {
+  position: static;
+  top: 0;
+  left: 0;
 }
 
 #menu-bar {
   display: inline-block;
   height: auto;
-  margin-bottom: 28px;  /* hacky; otherwise the rule-visualizer + CA window overlap :-( */
+  margin-bottom: 28px;
   margin-top: 3px;
   overflow: auto;
 }
-
-
-#rule-visualizer table tr td div {
-  font-size: 90%;
-  line-height: 50%;
+#menu-bar a {
+  float: left;
 }
 
-#rule-visualizer table tr .invisible div {
-  background-color: #FFFFFF;
-  visibility: visible;
-}
-
-#rule-visualizer table tr .active div {
-  background-color: #FFFFFF;
-  visibility: hidden;
-}
-
-#rule-visualizer table tr .inactive div {
-  background-color: #FFFFFF;
-  visibility: hidden;
-}
-
-#rule-visualizer table tr .invisible {
-  background-color: #FFFFFF;
-}
-
-#rule-visualizer table tr .random {
-  background-color: #FFFFFF;
-}
-
-#rule-visualizer table tr td {
-  height: 8px;
-  width: 8px;
-  margin: 1px;
-}
-
-#rule-visualizer table tr {
-  height: 10px;
-  width: auto;
-  margin: 1px;
-}
-
-#rule-visualizer table {
-  display: inline-block;
-  height: auto;
-  width: auto;
-  margin: 1px;
-}
-
-#rule-visualizer {
-  margin-top:5px;
+#rulevisualizer {
+  margin-top: 5px;
   text-align: center;
   height: auto;
   width: auto;
 }
-
-.row div {
+#rulevisualizer table {
+  display: inline-block;
+  height: auto;
+  width: auto;
+  margin: 1px;
+}
+#rulevisualizer table tr {
+  height: 10px;
+  width: auto;
+  margin: 1px;
+}
+#rulevisualizer table tr td {
   height: 8px;
   width: 8px;
-  margin:1px;
-  display: inline-block;
+  margin: 1px;
+}
+#rulevisualizer table tr .random {
+  background-color: #FFFFFF;
+}
+#rulevisualizer table tr .invisible {
+  background-color: #FFFFFF;
+}
+#rulevisualizer table tr .invisible div {
+  background-color: #FFFFFF;
+  visibility: visible;
+}
+#rulevisualizer table tr .inactive div {
+  background-color: #FFFFFF;
+  visibility: hidden;
+}
+#rulevisualizer table tr .active div {
+  background-color: #FFFFFF;
+  visibility: hidden;
 }
 
 .row {
   text-align: center;
 }
-
-#footer {
-  position: absolute;
-  right: 3px;
-  bottom: 3px;
+.row div {
+  height: 8px;
+  width: 8px;
+  margin: 1px;
+  display: inline-block;
 }
 
 body {
   margin: 0;
   display: inline;
   text-align: right;
+}
+body #footer {
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
 }
