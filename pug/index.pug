@@ -1,0 +1,63 @@
+mixin rulebox(name, state1, state2, state3)
+  table(id="rule-box-" + name)
+    tr
+      td(class=state1)
+      td(class=state2)
+      td(class=state3)
+    tr
+      td.invisible
+      td.toggle
+        div ?
+      td.invisible
+
+
+html
+  head
+    link(rel="stylesheet", type="text/css", href="css/style.css")
+
+  body
+    #menu-bar
+      a(href="https://github.com/chriskirkland/cellular-automata")
+        img(src="imgs/mark-github.png", alt="source", width=23, height=23, border=0)
+
+      #menu-bar-right
+        .display-stack
+          div active:
+            input#active-color-picker(type="color", value="#FF0000")
+          div inactive:
+            input#inactive-color-picker(type="color", value="#99CCFF")
+
+        .display-stack
+          div
+            button#visualize-button(type="button") visualize
+
+        .display-stack
+          div reset on change:
+            input#reset-on-change(type="checkbox")
+          div select a rule:
+            select#rule-selector
+              option(value="random") random
+              option(value="slideRight") slide right
+              option(value="rule30") rule 30
+              option(value="rule110") rule 110
+              option(value="rule110Random") rule 100 with randomness
+              option(value="rule126") rule 126
+              option(value="rule150") rule 150
+              option(value="rule182") rule 182
+
+  #rule-visualizer
+    +rulebox('111', "active", "active", "active")
+    +rulebox('110', "active", "active", "inactive")
+    +rulebox('101', "active", "inactive", "active")
+    +rulebox('100', "active", "inactive", "inactive")
+    +rulebox('011', "inactive", "active", "active")
+    +rulebox('010', "inactive", "active", "inactive")
+    +rulebox('001', "inactive", "inactive", "active")
+    +rulebox('000', "inactive", "inactive", "inactive")
+
+  #automaton
+
+  #footer Learn more about Cellular Automata&nbsp;
+    a(href="https://github.com/chriskirkland/cellular-automata/wiki") here!
+
+  script(type="text/javascript", src="scripts/main.js")

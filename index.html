@@ -1,162 +1,159 @@
+
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
   </head>
-
   <body>
-    <div id="menu-bar">
-      <a href="https://github.com/chriskirkland/cellular-automata">
-        <img src="imgs/mark-github.png" alt="source" width=23 height=23 border=0>
-      </a>
-
-      <div id='menu-bar-right'>
-        <div class='display-stack'>
-          <div>
-            active:
-            <input type="color" id="active-color-picker" value="#FF0000" />
+    <div id="menu-bar"><a href="https://github.com/chriskirkland/cellular-automata"><img src="imgs/mark-github.png" alt="source" width="23" height="23" border="0"/></a>
+      <div id="menu-bar-right">
+        <div class="display-stack">
+          <div>active:
+            <input id="active-color-picker" type="color" value="#FF0000"/>
           </div>
-
-          <div>
-          inactive:
-          <input type="color" id="inactive-color-picker" value="#99CCFF" />
+          <div>inactive:
+            <input id="inactive-color-picker" type="color" value="#99CCFF"/>
           </div>
         </div>
-
-        <div class='display-stack'>
+        <div class="display-stack">
           <div>
-            <button type="button" id="visualize-button">visualize</button>
+            <button id="visualize-button" type="button">visualize</button>
           </div>
         </div>
-
-        <div class='display-stack'>
-          <div>
-            reset on change:
-            <input type="checkbox" id="reset-on-change" />
+        <div class="display-stack">
+          <div>reset on change:
+            <input id="reset-on-change" type="checkbox"/>
           </div>
-
-          <div>
-          select a rule:
-          <select id="rule-selector">
-            <option value="random">random</option>
-            <option value="slideRight">slide right</option>
-            <option value="rule30">rule 30</option>
-            <option value="rule110">rule 110</option>
-            <option value="rule110Random">rule 110 with randomness</option>
-            <option value="rule126">rule 126</option>
-            <option value="rule150">rule 150</option>
-            <option value="rule182">rule 182</option>
-          </select>
+          <div>select a rule:
+            <select id="rule-selector">
+              <option value="random">random</option>
+              <option value="slideRight">slide right</option>
+              <option value="rule30">rule 30</option>
+              <option value="rule110">rule 110</option>
+              <option value="rule110Random">rule 100 with randomness</option>
+              <option value="rule126">rule 126</option>
+              <option value="rule150">rule 150</option>
+              <option value="rule182">rule 182</option>
+            </select>
           </div>
         </div>
       </div>
     </div>
-
-    <div id="rule-visualizer">
-      <table id="rule-box-111">
-        <tr>
-          <td class="active"></td>
-          <td class="active"></td>
-          <td class="active"></td>
-        </tr>
-        <tr>
-          <td class="invisible"></td>
-          <td class="toggle"><div>?</div></td>
-          <td class="invisible"></td>
-        </tr>
-      </table>
-      <table id="rule-box-110">
-        <tr>
-          <td class="active"></td>
-          <td class="active"></td>
-          <td class="inactive"></td>
-        </tr>
-        <tr>
-          <td class="invisible"></td>
-          <td class="toggle"><div>?</div></td>
-          <td class="invisible"></td>
-        </tr>
-      </table>
-      <table id="rule-box-101">
-        <tr>
-          <td class="active"></td>
-          <td class="inactive"></td>
-          <td class="active"></td>
-        </tr>
-        <tr>
-          <td class="invisible"></td>
-          <td class="toggle"><div>?</div></td>
-          <td class="invisible"></td>
-        </tr>
-      </table>
-      <table id="rule-box-100">
-        <tr>
-          <td class="active"></td>
-          <td class="inactive"></td>
-          <td class="inactive"></td>
-        </tr>
-        <tr>
-          <td class="invisible"></td>
-          <td class="toggle"><div>?</div></td>
-          <td class="invisible"></td>
-        </tr>
-      </table>
-      <table id="rule-box-011">
-        <tr>
-          <td class="inactive"></td>
-          <td class="active"></td>
-          <td class="active"></td>
-        </tr>
-        <tr>
-          <td class="invisible"></td>
-          <td class="toggle"><div>?</div></td>
-          <td class="invisible"></td>
-        </tr>
-      </table>
-      <table id="rule-box-010">
-        <tr>
-          <td class="inactive"></td>
-          <td class="active"></td>
-          <td class="inactive"></td>
-        </tr>
-        <tr>
-          <td class="invisible"></td>
-          <td class="toggle"><div>?</div></td>
-          <td class="invisible"></td>
-        </tr>
-      </table>
-      <table id="rule-box-001">
-        <tr>
-          <td class="inactive"></td>
-          <td class="inactive"></td>
-          <td class="active"></td>
-        </tr>
-        <tr>
-          <td class="invisible"></td>
-          <td class="toggle"><div>?</div></td>
-          <td class="invisible"></td>
-        </tr>
-      </table>
-      <table id="rule-box-000">
-        <tr>
-          <td class="inactive"></td>
-          <td class="inactive"></td>
-          <td class="inactive"></td>
-        </tr>
-        <tr>
-          <td class="invisible"></td>
-          <td class="toggle"><div>?</div></td>
-          <td class="invisible"></td>
-        </tr>
-      </table>
-    </div>
-
-    <div id="automaton"> </div>
-
-    <div id="footer">
-      Learn more about Cellular Automata
-      <a href="https://github.com/chriskirkland/cellular-automata/wiki">here</a>!
-    </div>
-
-    <script type="text/javascript" src="scripts/main.js"></script>
   </body>
+  <div id="rule-visualizer">
+    <table id="rule-box-111">
+      <tr>
+        <td class="active"></td>
+        <td class="active"></td>
+        <td class="active"></td>
+      </tr>
+      <tr>
+        <td class="invisible"></td>
+        <td class="toggle">
+          <div>?</div>
+        </td>
+        <td class="invisible"></td>
+      </tr>
+    </table>
+    <table id="rule-box-110">
+      <tr>
+        <td class="active"></td>
+        <td class="active"></td>
+        <td class="inactive"></td>
+      </tr>
+      <tr>
+        <td class="invisible"></td>
+        <td class="toggle">
+          <div>?</div>
+        </td>
+        <td class="invisible"></td>
+      </tr>
+    </table>
+    <table id="rule-box-101">
+      <tr>
+        <td class="active"></td>
+        <td class="inactive"></td>
+        <td class="active"></td>
+      </tr>
+      <tr>
+        <td class="invisible"></td>
+        <td class="toggle">
+          <div>?</div>
+        </td>
+        <td class="invisible"></td>
+      </tr>
+    </table>
+    <table id="rule-box-100">
+      <tr>
+        <td class="active"></td>
+        <td class="inactive"></td>
+        <td class="inactive"></td>
+      </tr>
+      <tr>
+        <td class="invisible"></td>
+        <td class="toggle">
+          <div>?</div>
+        </td>
+        <td class="invisible"></td>
+      </tr>
+    </table>
+    <table id="rule-box-011">
+      <tr>
+        <td class="inactive"></td>
+        <td class="active"></td>
+        <td class="active"></td>
+      </tr>
+      <tr>
+        <td class="invisible"></td>
+        <td class="toggle">
+          <div>?</div>
+        </td>
+        <td class="invisible"></td>
+      </tr>
+    </table>
+    <table id="rule-box-010">
+      <tr>
+        <td class="inactive"></td>
+        <td class="active"></td>
+        <td class="inactive"></td>
+      </tr>
+      <tr>
+        <td class="invisible"></td>
+        <td class="toggle">
+          <div>?</div>
+        </td>
+        <td class="invisible"></td>
+      </tr>
+    </table>
+    <table id="rule-box-001">
+      <tr>
+        <td class="inactive"></td>
+        <td class="inactive"></td>
+        <td class="active"></td>
+      </tr>
+      <tr>
+        <td class="invisible"></td>
+        <td class="toggle">
+          <div>?</div>
+        </td>
+        <td class="invisible"></td>
+      </tr>
+    </table>
+    <table id="rule-box-000">
+      <tr>
+        <td class="inactive"></td>
+        <td class="inactive"></td>
+        <td class="inactive"></td>
+      </tr>
+      <tr>
+        <td class="invisible"></td>
+        <td class="toggle">
+          <div>?</div>
+        </td>
+        <td class="invisible"></td>
+      </tr>
+    </table>
+  </div>
+  <div id="automaton"></div>
+  <div id="footer">Learn more about Cellular Automata&nbsp;<a href="https://github.com/chriskirkland/cellular-automata/wiki">here!</a></div>
+  <script type="text/javascript" src="scripts/main.js"></script>
 </html>
