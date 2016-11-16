@@ -1,27 +1,40 @@
-#menu-bar-right
-  position: absolute
-  right: 0
-
-  .display-stack
-    float: left
-    vertical-align: top
-    margin-right: 10px
-    margin-left: 20px
-
-    div
-      position: static
-      top: 0
-      left: 0
-
 #menu-bar
   display: inline-block
   height: auto
-  margin-bottom: 28px
   margin-top: 3px
-  overflow: auto
+  margin-bottom: 46px
+  // overflow: hidden
+
+  /* NOTE:
+    should fix the menu-bar having an incorrect height, but
+    it doesn't.  Height is computed to 18px instead of 46px.
+     src: http://stackoverflow.com/a/12540569
+    */
+  // &:after
+  //   content: "."
+  //   visibility: hidden
+  //   display: block
+  //   clear: both
 
   a
     float: left
+    // position: absolute
+    // left: 3px
+
+  #menu-bar-right
+    position: absolute
+    right: 0
+
+    .display-stack
+      float: left
+      vertical-align: top
+      margin-right: 10px
+      margin-left: 20px
+
+      div
+        position: static
+        top: 0
+        left: 0
 
 #rulevisualizer
   margin-top: 5px

@@ -13,12 +13,31 @@ function dec2bin(dec, minDigits) {
   return zeroes + bin
 }
 
+function computedHeight(id) {
+  var elem = document.getElementById(id)
+  var styles = window.getComputedStyle(elem)
+  var computed = Math.ceil(elem.offsetHeight +
+                           parseFloat(styles['margin-top']) +
+                           parseFloat(styles['margin-bottom']))
+  console.log(computed)
+
+  if (isNaN(computed)) {
+    return computed
+  } else {
+    return elem.offsetHeight
+  }
+}
+
 function getWindowParams() {
-  menuHeight = document.getElementById('menu-bar').offsetHeight +
+  // menuHeight = document.getElementById('menu-bar').offsetHeight +
+  // menuHeight = computedHeight('menu-bar') +  // correct, but doesn't work because 'menu-bar' height is wrong...
+  menuHeight = 49 +  // 'menu-bar' height w/ padding + margin
                document.getElementById('rule-visualizer').offsetHeight +
                document.getElementById('footer').offsetHeight
   cellsInRow = Math.floor(window.innerWidth/10)
   maxRows = Math.floor((window.innerHeight - menuHeight)/10)
+
+  document.getElementById('automaton').style.maxHeight = maxRows * 10
 }
 
 function divsToBool(tuple) {
@@ -151,14 +170,14 @@ function toggleRuleVisualization(){
 
 let waittime = 100 // milliseconds
 
+// hide rule visualization bar
+toggleRuleVisualization()
+
 // setup # of rows and row sizes
 getWindowParams()
 
 // initialize first row
 reset()
-
-// hide rule visualization bar
-toggleRuleVisualization()
 
 
 let stateStringToNum = new Map([

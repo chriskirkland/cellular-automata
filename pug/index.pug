@@ -10,7 +10,6 @@ mixin rulebox(name, state1, state2, state3)
         div ?
       td.invisible
 
-
 html
   head
     link(rel="stylesheet", type="text/css", href="css/style.css")
@@ -44,6 +43,10 @@ html
               option(value="rule126") rule 126
               option(value="rule150") rule 150
               option(value="rule182") rule 182
+
+        // div(style="clear:both")
+      //div(style="clear:both")
+      // .clearfix
 
   #rule-visualizer
     +rulebox('111', "active", "active", "active")
