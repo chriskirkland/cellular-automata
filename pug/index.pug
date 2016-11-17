@@ -44,19 +44,16 @@ html
               option(value="rule150") rule 150
               option(value="rule182") rule 182
 
-        // div(style="clear:both")
-      //div(style="clear:both")
-      // .clearfix
-
-  #rule-visualizer
-    +rulebox('111', "active", "active", "active")
-    +rulebox('110', "active", "active", "inactive")
-    +rulebox('101', "active", "inactive", "active")
-    +rulebox('100', "active", "inactive", "inactive")
-    +rulebox('011', "inactive", "active", "active")
-    +rulebox('010', "inactive", "active", "inactive")
-    +rulebox('001', "inactive", "inactive", "active")
-    +rulebox('000', "inactive", "inactive", "inactive")
+    #rule-visualizer
+      #rule-visualizer-inner.clearfix
+        +rulebox('111', "active", "active", "active")
+        +rulebox('110', "active", "active", "inactive")
+        +rulebox('101', "active", "inactive", "active")
+        +rulebox('100', "active", "inactive", "inactive")
+        +rulebox('011', "inactive", "active", "active")
+        +rulebox('010', "inactive", "active", "inactive")
+        +rulebox('001', "inactive", "inactive", "active")
+        +rulebox('000', "inactive", "inactive", "inactive")
 
   #automaton
 

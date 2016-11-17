@@ -1,98 +1,95 @@
-#menu-bar
-  display: inline-block
-  height: auto
-  margin-top: 3px
-  margin-bottom: 46px
-  // overflow: hidden
-
-  /* NOTE:
-    should fix the menu-bar having an incorrect height, but
-    it doesn't.  Height is computed to 18px instead of 46px.
-     src: http://stackoverflow.com/a/12540569
-    */
-  // &:after
-  //   content: "."
-  //   visibility: hidden
-  //   display: block
-  //   clear: both
-
-  a
-    float: left
-    // position: absolute
-    // left: 3px
-
-  #menu-bar-right
-    position: absolute
-    right: 0
-
-    .display-stack
-      float: left
-      vertical-align: top
-      margin-right: 10px
-      margin-left: 20px
-
-      div
-        position: static
-        top: 0
-        left: 0
-
-#rulevisualizer
-  margin-top: 5px
-  text-align: center
-  height: auto
-  width: auto
-
-  table
-    display: inline-block
-    height: auto
-    width: auto
-    margin: 1px
-
-    tr
-      height: 10px
-      width: auto
-      margin: 1px
-
-      td
-        height: 8px
-        width: 8px
-        margin: 1px
-
-      .random
-        background-color: #FFFFFF
-
-      .invisible
-        background-color: #FFFFFF
-
-        div
-          background-color: #FFFFFF
-          visibility: visible
-
-      .inactive
-        div
-          background-color: #FFFFFF
-          visibility: hidden
-
-      .active
-        div
-          background-color: #FFFFFF
-          visibility: hidden
-
-.row
-  text-align: center
-
-  div
-    height: 8px
-    width: 8px
-    margin: 1px
-    display: inline-block
-
 body
   margin: 0
   display: inline
   text-align: right
 
+  #menu-bar
+    display: inline-block
+    width: 100%
+    padding: 10px 0px 10px 0px
+
+    a
+      float: left
+
+    #menu-bar-right
+      float: right
+
+      .display-stack
+        float: left
+        vertical-align: top
+        margin-right: 10px
+        margin-left: 20px
+
+        div
+          position: static
+          top: 0
+          left: 0
+
+  #rule-visualizer
+    margin-top: 5px
+    height: auto
+    width: 100%
+    text-align: center
+
+    #rule-visualizer-inner
+      display: inline-block
+      margin: 0 auto
+
+      table
+        float: left
+        height: auto
+        width: auto
+        margin: 1px
+
+        tr
+          height: 10px
+          width: auto
+          margin: 1px
+
+          td
+            height: 8px
+            width: 8px
+            margin: 1px
+
+          .random
+            background-color: #FFFFFF
+
+          .invisible
+            background-color: #FFFFFF
+
+            div
+              background-color: #FFFFFF
+              visibility: visible
+
+          .inactive
+            div
+              background-color: #FFFFFF
+              visibility: hidden
+
+          .active
+            div
+              background-color: #FFFFFF
+              visibility: hidden
+
+  #automaton .row
+    text-align: center
+
+    div
+      height: 8px
+      width: 8px
+      margin: 1px
+      display: inline-block
+
   #footer
     position: absolute
     right: 3px
     bottom: 3px
+
+.clearfix
+  &:before,
+  &:after
+    content: " "
+    display: table
+
+  &:after
+    clear: both
